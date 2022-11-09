@@ -7,7 +7,7 @@ const ServiceCard = ({ service }) => {
     const { _id, name, img, desc, price } = service
     return (
         <div className='flex flex-col items-start justify-center m-3 shadow-md p-3 rounded-md'>
-            <PhotoProvider className='h-full w-full'>
+            <PhotoProvider>
                 <PhotoView src={img}>
                     <img src={img} className="w-full h-48 mb-1" alt="" />
                 </PhotoView>

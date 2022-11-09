@@ -4,6 +4,7 @@ import Main from './Pages/Main/Main';
 import Home from './Pages/Common/Home';
 import Services from './Pages/Common/Services';
 import ServiceDetails from './Pages/Common/ServiceDetails';
+import Blog from './Pages/Common/Blog';
 
 function App() {
 
@@ -21,6 +22,10 @@ function App() {
           path : '/services',
           loader : ()=> fetch('http://localhost:5000/services'),
           element : <Services></Services>
+        },
+        {
+          path : '/blog',
+          element : <Blog></Blog>
         },
         {
           path : 'services/:id',
