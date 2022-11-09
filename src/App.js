@@ -5,6 +5,8 @@ import Home from './Pages/Common/Home';
 import Services from './Pages/Common/Services';
 import ServiceDetails from './Pages/Common/ServiceDetails';
 import Blog from './Pages/Common/Blog';
+import Login from './Pages/Login/Login';
+import SignUp from './Pages/SignUp/SignUp';
 
 function App() {
 
@@ -31,6 +33,14 @@ function App() {
           path : 'services/:id',
           loader : ({params})=> fetch(`http://localhost:5000/services/${params.id}`),
           element : <ServiceDetails></ServiceDetails>
+        },
+        {
+          path : '/login',
+          element : <Login></Login>
+        },
+        {
+          path : '/signup',
+          element : <SignUp></SignUp>
         }
       ]
     }

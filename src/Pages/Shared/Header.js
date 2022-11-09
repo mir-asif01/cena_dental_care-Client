@@ -9,8 +9,8 @@ const Header = () => {
         <li><Link to='/blog'>Blog</Link></li>
         <li><Link >Add Services</Link></li>
         <li><Link >My Reviews</Link></li>
-        <li><Link>Login</Link></li>
-        <li><Link>Log Out</Link></li>
+        <li><Link to='login'>Login</Link></li>
+        <li><Link >Log Out</Link></li>
     </>
 
     return (
@@ -25,15 +25,14 @@ const Header = () => {
                             {menuItems}
                         </ul>
                     </div>
-                    <Link to='/'><h1 className='text-xl font-semibold'>Cena Dentals</h1></Link>
+                    <Link to='/'>
+                        <img src="https://images-platform.99static.com//MpDGcVXJFKTsTAgFLV0kfvolLd8=/1479x130:1979x630/fit-in/500x500/99designs-contests-attachments/67/67802/attachment_67802431" className='h-14 w-14 rounded-full' alt="" />
+                    </Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal p-0">
                         {menuItems}
                     </ul>
-                </div>
-                <div className="navbar-end">
-                    <button className='bg-white text-orange-600 py-2 px-5 hover:bg-orange-600 hover:text-white font-semibold border border-orange-600 rounded-md'>Call Us</button>
                 </div>
             </div>
         </div>

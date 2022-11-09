@@ -1,6 +1,7 @@
 import React from 'react';
 
 const Blog = () => {
+    document.title = "My Blog"
     return (
         <div className='p-2 md:p-4'>
             <h1 className='text-xl font-semibold'>Welcome to My Blog</h1>

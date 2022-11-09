@@ -5,6 +5,8 @@ import 'react-photo-view/dist/react-photo-view.css';
 
 const ServiceDetails = () => {
 
+    document.title = "Service details"
+
     const service = useLoaderData()
     const { _id, name, img, desc, price } = service
     return (

@@ -6,6 +6,8 @@ import Campaign from './Campaign';
 
 const Home = () => {
 
+    document.title = "I am Cena, this is my service review website"
+
     const homePageServices = useLoaderData()
 
     return (

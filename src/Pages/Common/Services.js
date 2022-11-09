@@ -5,6 +5,7 @@ import ServiceCard from '../Shared/ServiceCard';
 const Services = () => {
 
     const services = useLoaderData()
+    document.title = 'Services'
 
     return (
         <div className='my-3 p-2 md:p-3'>
