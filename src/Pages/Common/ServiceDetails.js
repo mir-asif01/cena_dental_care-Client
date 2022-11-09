@@ -1,6 +1,7 @@
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
-import ServiceCard from '../Shared/ServiceCard';
+import { PhotoProvider, PhotoView } from 'react-photo-view';
+import 'react-photo-view/dist/react-photo-view.css';
 
 const ServiceDetails = () => {
 
@@ -11,7 +12,11 @@ const ServiceDetails = () => {
             {/* service details  */}
             <div className='md:flex-0 p-2 md:p-4 w-full lg:w-72 border-r-2'>
                 <h1 className='text-xl font-semibold underline mb-2'>Service Details</h1>
-                <img src={img} className='w-full' alt="" />
+                <PhotoProvider className='h-full w-full'>
+                    <PhotoView src={img}>
+                        <img src={img} className="w-full h-48 mb-1" alt="" />
+                    </PhotoView>
+                </PhotoProvider>
                 <div>
                     <h1 className='font-semibold'>{name}</h1>
                     <h1 className='font-semibold'>Price : ${price}</h1>
