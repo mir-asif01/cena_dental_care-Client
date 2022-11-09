@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 const Header = () => {
 
     const menuItems = <>
-        <li><Link>Home</Link></li>
-        <li><Link>Services</Link></li>
+        <li><Link to='/'>Home</Link></li>
+        <li><Link to='/services'>Services</Link></li>
         <li><Link>Login</Link></li>
         <li><Link>Log Out</Link></li>
     </>
@@ -22,7 +22,7 @@ const Header = () => {
                             {menuItems}
                         </ul>
                     </div>
-                    <h1 className='text-xl font-semibold'>Cena Dentals</h1>
+                    <Link to='/'><h1 className='text-xl font-semibold'>Cena Dentals</h1></Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal p-0">
