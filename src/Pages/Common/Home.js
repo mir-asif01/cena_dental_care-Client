@@ -10,7 +10,7 @@ const Home = () => {
 
     return (
         <div className='my-4 p-2 md:p-5'>
-            <h2 className='text-xl font-semibold mb-3'>Popular Services of Dr. John Cena</h2>
+            <h2 className='text-2xl font-semibold mb-3'>Popular Services of Dr. John Cena</h2>
             <div className='grid grid-cols-1 md:grid-cols-3'>
                 {
                     homePageServices.map(service => <ServiceCard key={service._id} service={service}></ServiceCard>)
@@ -25,8 +25,8 @@ const Home = () => {
 
             {/* faq section  */}
 
-            <h2 className='text-xl  font-semibold my-3'>Frequently Asked Questions</h2>
-            <div className='px-10 md:px-28 mx-auto'>
+            <h2 className='text-2xl font-semibold text-center my-3'>Frequently Asked Questions</h2>
+            <div className='px-10 md:px-28 mx-auto mb-7'>
                 <div tabIndex={0} className="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box my-2">
                     <div className="collapse-title text-xl font-medium">
                         What are the common dental problems?

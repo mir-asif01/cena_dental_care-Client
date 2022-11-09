@@ -2,8 +2,8 @@ import React from 'react';
 
 const Campaign = () => {
     return (
-        <div>
-            <h1 className='text-xl font-semibold mb-4'>Free dental health checkup campaign</h1>
+        <div className='mb-7'>
+            <h1 className='text-2xl font-semibold my-5 text-center'>Free dental health checkup campaign</h1>
             <div className='w-full md:w-3/4 mx-auto flex flex-col-reverse md:flex-row justify-between items-center'>
                 <div>
                     <img src="https://img.freepik.com/free-vector/dentistry-set-with-flat-isolated-icons-healthy-damaged-tooth-with-characters-dental-doctors-vector-illustration_1284-74337.jpg?t=st=1668000796~exp=1668001396~hmac=291edb6b1976335e44fc7b8cc976d2fd69fa1009b876a1ffd971313c8db924e0" className='w-96' alt="" />
