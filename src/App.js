@@ -13,6 +13,7 @@ function App() {
       children : [
         {
           path : '/',
+          loader : ()=> fetch('http://localhost:5000/home'),
           element : <Home></Home>
         },
         {
@@ -24,7 +25,7 @@ function App() {
   ])
 
   return (
-    <div className="App">
+    <div>
       <RouterProvider router={routes}></RouterProvider>
     </div>
   );
