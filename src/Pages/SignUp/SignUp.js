@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {FaGoogle} from 'react-icons/fa'
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../Context/ContextProvider';
 
 const SignUp = () => {
     document.title = "Please Sign Up";
+
+    const {signUpNewUser,addDisplayNamePhotoURL,setUser} = useContext(AuthContext)
 
     const handleFormSubmit=(e)=>{
         e.preventDefault();
@@ -12,9 +15,21 @@ const SignUp = () => {
         const email = form.email.value;
         const password = form.password.value;
         const photo = form.photoURL.value;
-        
 
-        form.reset();
+        signUpNewUser(email,password)
+        .then(result=>{
+            addDisplayNamePhotoURL(name,photo)
+            .then(()=>{
+
+            })
+            .catch((error)=>console.log(error))
+            const user = result.user
+            setUser(user)
+            console.log(user)
+            form.reset();
+        })
+        .catch(error=> console.log(error))
+
     }
 
     return (

@@ -1,15 +1,26 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {FaGoogle} from 'react-icons/fa'
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../Context/ContextProvider';
 
 const Login = () => {
     document.title = "Please Login";
+
+    const {userLogin} = useContext(AuthContext)
 
     const handleFormSubmit=(e)=>{
         e.preventDefault();
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
+
+        userLogin(email,password)
+        .then(result=>{
+            const user = result.user
+            console.log(user)
+            form.reset()
+        })
+        .catch(error=>console.log(error))
     }
 
     return (

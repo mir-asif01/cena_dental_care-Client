@@ -1,10 +1,7 @@
-import React, { useContext } from 'react';
+import React, {  } from 'react';
 import { Link } from 'react-router-dom';
-import { AuthContext } from '../../Context/ContextProvider';
 
 const Header = () => {
-
-    const {user} = useContext(AuthContext)
 
     const menuItems = <>
         <li><Link to='/'>Home</Link></li>
@@ -12,7 +9,7 @@ const Header = () => {
         <li><Link to='/blog'>Blog</Link></li>
         <li><Link >Add Services</Link></li>
         <li><Link >My Reviews</Link></li>
-        <li><Link to='login'>Login {user.name}</Link></li>
+        <li><Link to='login'>Login</Link></li>
         <li><Link >Log Out</Link></li>
     </>
 
