@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import ServiceCard from '../Shared/ServiceCard';
+import Banner from './Banner';
+import Campaign from './Campaign';
 
 const Home = () => {
 
@@ -8,7 +10,7 @@ const Home = () => {
 
     return (
         <div className='my-4 p-2 md:p-5'>
-            <h2 className='text-xl mb-3'>Popular Services of Dr. John Cena</h2>
+            <h2 className='text-xl font-semibold mb-3'>Popular Services of Dr. John Cena</h2>
             <div className='grid grid-cols-1 md:grid-cols-3'>
                 {
                     homePageServices.map(service => <ServiceCard key={service._id} service={service}></ServiceCard>)
@@ -18,9 +20,12 @@ const Home = () => {
                 <Link to='/services'><button className='py-2 px-5 rounded-md bg-cyan-400 text-white'>See All</button></Link>
             </div>
 
-                {/* faq section  */}
+            {/* free check up  */}
+            <Campaign></Campaign>
 
-            <h2 className='text-xl my-3'>Frequently Asked Questions</h2>
+            {/* faq section  */}
+
+            <h2 className='text-xl  font-semibold my-3'>Frequently Asked Questions</h2>
             <div className='px-10 md:px-28 mx-auto'>
                 <div tabIndex={0} className="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box my-2">
                     <div className="collapse-title text-xl font-medium">
@@ -60,6 +65,8 @@ const Home = () => {
                     </div>
                 </div>
             </div>
+            {/* banner */}
+            <Banner></Banner>
         </div>
     );
 };
