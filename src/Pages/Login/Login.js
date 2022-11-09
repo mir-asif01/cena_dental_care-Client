@@ -6,7 +6,7 @@ import { AuthContext } from '../../Context/ContextProvider';
 const Login = () => {
     document.title = "Please Login";
 
-    const {userLogin} = useContext(AuthContext)
+    const {userLogin,setUser,googleSignIn} = useContext(AuthContext)
 
     const handleFormSubmit=(e)=>{
         e.preventDefault();
@@ -17,8 +17,17 @@ const Login = () => {
         userLogin(email,password)
         .then(result=>{
             const user = result.user
-            console.log(user)
+            setUser(user)
             form.reset()
+        })
+        .catch(error=>console.log(error))
+    }
+
+    const handleGoogleLogIn=()=>{
+        googleSignIn()
+        .then(result=>{
+            const user = result.user;
+            setUser(user)
         })
         .catch(error=>console.log(error))
     }
@@ -40,14 +49,14 @@ const Login = () => {
                                 <label className="label">
                                     <span className="label-text">Password</span>
                                 </label>
-                                <input type="text" placeholder="password" name='password' className="input input-bordered" />
+                                <input type="password" placeholder="password" name='password' className="input input-bordered" />
                             </div>
                             <div className="form-control mt-6">
                                 <button className="btn btn-primary">Login</button>
                             </div>
                             <p>Don't have an account?? <Link to='/signup' className='text-blue underline'>Sign Up</Link></p>
                         </form>
-                        <button className='flex justify-between px-4 py-1 mb-3 m border border-gray-300 rounded-xl items-center w-3/4 mx-auto font-semibold'><FaGoogle className='h-6 w-6 text-blue-600'></FaGoogle>Login With Google</button>
+                        <button onClick={handleGoogleLogIn} className='flex justify-between px-4 py-1 mb-3 m border border-gray-300 rounded-xl items-center w-3/4 mx-auto font-semibold'><FaGoogle className='h-6 w-6 text-blue-600'></FaGoogle>Login With Google</button>
                     </div>
                 </div>
             </div>

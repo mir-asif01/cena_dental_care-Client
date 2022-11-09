@@ -6,7 +6,7 @@ import { AuthContext } from '../../Context/ContextProvider';
 const SignUp = () => {
     document.title = "Please Sign Up";
 
-    const {signUpNewUser,addDisplayNamePhotoURL,setUser} = useContext(AuthContext)
+    const {signUpNewUser,addDisplayNamePhotoURL,setUser,googleSignIn} = useContext(AuthContext)
 
     const handleFormSubmit=(e)=>{
         e.preventDefault();
@@ -25,17 +25,25 @@ const SignUp = () => {
             .catch((error)=>console.log(error))
             const user = result.user
             setUser(user)
-            console.log(user)
             form.reset();
         })
         .catch(error=> console.log(error))
 
     }
 
+    const handleGoogleLogIn=()=>{
+        googleSignIn()
+        .then(result=>{
+            const user = result.user;
+            setUser(user)
+        })
+        .catch(error=>console.log(error))
+    }
+
     return (
         <div className='mt-3'>
             <h1 className='text-3xl text-center'>Sign Up Here</h1>
-            <div className="hero">
+            <div className="hero p-3">
                 <div className="hero-content flex-col lg:flex-row-reverse">
                     <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
                         <form onSubmit={handleFormSubmit} className="card-body">
@@ -68,7 +76,7 @@ const SignUp = () => {
                             </div>
                             <p>Don't have an account?? <Link to='/login' className='text-blue underline'>Login</Link></p>
                         </form>
-                        <button className='flex justify-between px-4 py-1 mb-3 m border border-gray-300 rounded-xl items-center w-3/4 mx-auto font-semibold'><FaGoogle className='h-6 w-6 text-blue-600'></FaGoogle>Login With Google</button>
+                        <button onClick={handleGoogleLogIn} className='flex justify-between px-4 py-1 mb-3 m border border-gray-300 rounded-xl items-center w-3/4 mx-auto font-semibold'><FaGoogle className='h-6 w-6 text-blue-600'></FaGoogle>Login With Google</button>
                     </div>
                 </div>
             </div>
