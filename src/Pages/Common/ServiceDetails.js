@@ -7,9 +7,9 @@ const ServiceDetails = () => {
     const service = useLoaderData()
     const { _id, name, img, desc, price } = service
     return (
-        <div className='my-4 flex'>
+        <div className='my-4 flex flex-col md:flex-row'>
             {/* service details  */}
-            <div className='flex-0 p-2 md:p-4 w-full lg:w-56 border-r-2'>
+            <div className='md:flex-0 p-2 md:p-4 w-full lg:w-72 border-r-2'>
                 <h1 className='text-xl font-semibold underline mb-2'>Service Details</h1>
                 <img src={img} className='w-full' alt="" />
                 <div>
@@ -19,7 +19,7 @@ const ServiceDetails = () => {
                 </div>
             </div>
             {/* reviews */}
-            <div className='flex-grow p-2 md:p-4'>
+            <div className='md:flex-grow p-2 md:p-4'>
                 <h1 className='text-xl font-semibold underline mb-2'>Reviews</h1>
             </div>
         </div>
