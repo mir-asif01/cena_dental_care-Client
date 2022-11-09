@@ -10,7 +10,7 @@ const Footer = () => {
                     <button className="link link-hover">Design</button>
                     <button className="link link-hover">Marketing</button>
                     <button className="link link-hover">Advertisement</button>
-                </div>
+                </div> 
                 <div>
                     <span className="footer-title">About Dr. John Cena</span>
                     <button className="link link-hover">About us</button>
