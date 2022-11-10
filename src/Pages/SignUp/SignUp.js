@@ -1,15 +1,18 @@
 import React, { useContext } from 'react';
-import {FaGoogle} from 'react-icons/fa'
-import { Link } from 'react-router-dom';
+import { FaGoogle } from 'react-icons/fa'
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/ContextProvider';
 import Spinner from '../Shared/Spinner';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const SignUp = () => {
     document.title = "Please Sign Up";
 
-    const {signUpNewUser,addDisplayNamePhotoURL,setUser,googleSignIn,loading} = useContext(AuthContext)
+    const { signUpNewUser, addDisplayNamePhotoURL, setUser, googleSignIn, loading } = useContext(AuthContext)
+    const navigate = useNavigate()
 
-    const handleFormSubmit=(e)=>{
+    const handleFormSubmit = (e) => {
         e.preventDefault();
         const form = e.target;
         const name = form.name.value;
@@ -17,36 +20,50 @@ const SignUp = () => {
         const password = form.password.value;
         const photo = form.photoURL.value;
 
-        signUpNewUser(email,password)
-        .then(result=>{
-            addDisplayNamePhotoURL(name,photo)
-            .then(()=>{
-
+        signUpNewUser(email, password)
+            .then(result => {
+                addDisplayNamePhotoURL(name, photo)
+                    .then(() => {
+                        toast.success('User created Succesfully')
+                    })
+                    .catch((error) => console.log(error))
+                const user = result.user
+                setUser(user)
+                form.reset();
+                navigate('/login')
             })
-            .catch((error)=>console.log(error))
-            const user = result.user
-            setUser(user)
-            form.reset();
-        })
-        .catch(error=> console.log(error))
+            .catch(error => console.log(error))
 
     }
 
-    const handleGoogleLogIn=()=>{
+    const handleGoogleLogIn = () => {
         googleSignIn()
-        .then(result=>{
-            const user = result.user;
-            setUser(user)
-        })
-        .catch(error=>console.log(error))
+            .then(result => {
+                const user = result.user;
+                setUser(user)
+                navigate('/')
+            })
+            .catch(error => toast.error(error.message))
     }
 
-    if(loading){
+    if (loading) {
         return <Spinner></Spinner>
     }
-    else{
-         return (
+    else {
+        return (
             <div className='mt-3'>
+                <ToastContainer
+                    position="top-center"
+                    autoClose={2500}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    theme="light"
+                />
                 <h1 className='text-3xl text-center'>Sign Up Here</h1>
                 <div className="hero p-3">
                     <div className="hero-content flex-col lg:flex-row-reverse">

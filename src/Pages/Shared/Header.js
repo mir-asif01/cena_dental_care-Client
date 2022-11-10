@@ -1,6 +1,8 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Context/ContextProvider';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Header = () => {
 
@@ -8,7 +10,7 @@ const Header = () => {
 
     const handleLogOut = () => {
         userSignOut()
-            .then(() => alert('log out successfull'))
+            .then(() => toast.success('log out successfull'))
             .catch(error => console.log(error))
     }
 
@@ -21,14 +23,26 @@ const Header = () => {
                 <li><Link >Add Services</Link></li>
                 <li><Link >My Reviews</Link></li>
                 <li><button onClick={handleLogOut} className='text-white bg-sky-800'>Log Out</button></li>
-            </> :  <li><Link to='login' className='bg-sky-800 text-white'>Login</Link></li>
+            </> : <li><Link to='login' className='bg-sky-800 text-white'>Login</Link></li>
         }
-       
+
 
     </>
 
     return (
         <div>
+            <ToastContainer
+                position="top-center"
+                autoClose={2500}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+            />
             <div className="navbar shadow-sm shadow-slate-400">
                 <div className="navbar-start">
                     <div className="dropdown">

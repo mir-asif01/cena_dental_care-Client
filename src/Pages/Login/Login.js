@@ -1,13 +1,16 @@
 import React, { useContext } from 'react';
 import { FaGoogle } from 'react-icons/fa'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/ContextProvider';
 import Spinner from '../Shared/Spinner';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
     document.title = "Please Login";
 
     const { userLogin, setUser, googleSignIn, loading } = useContext(AuthContext)
+    const navigate = useNavigate()
 
     const handleFormSubmit = (e) => {
         e.preventDefault();
@@ -19,29 +22,43 @@ const Login = () => {
             .then(result => {
                 const user = result.user
                 setUser(user)
-                if (loading) {
-                    return <h1>Loading.....</h1>
-                }
+                toast.success('Login Succesfull')
                 form.reset()
+                navigate('/')
             })
-            .catch(error => console.log(error))
+            .catch(error => {
+                toast.error(error.message)
+            })
     }
 
     const handleGoogleLogIn = () => {
         googleSignIn()
             .then(result => {
                 const user = result.user;
+                toast.success('Google Sign In Successfull')
                 setUser(user)
+                navigate('/')
             })
-            .catch(error => console.log(error))
+            .catch(error => toast.error(`${error.message}`))
     }
 
     if (loading) {
         return <Spinner></Spinner>
     }
-    else {
         return (
             <div className='mt-3'>
+                <ToastContainer
+                    position="top-center"
+                    autoClose={2500}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    theme="light"
+                />
                 <h1 className='text-3xl text-center'>Please Login</h1>
                 <div className="hero">
                     <div className="hero-content flex-col lg:flex-row-reverse">
@@ -70,7 +87,6 @@ const Login = () => {
                 </div>
             </div>
         );
-    }
-};
+    };
 
 export default Login;

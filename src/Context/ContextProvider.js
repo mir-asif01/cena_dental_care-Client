@@ -12,7 +12,7 @@ const ContextProvider = ({children}) => {
     const provider = new GoogleAuthProvider()
    
     const signUpNewUser = (email,password) =>{
-        return setLoader(true)
+        setLoader(true)
         return createUserWithEmailAndPassword(auth,email,password)
     }
 
