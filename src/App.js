@@ -7,6 +7,7 @@ import ServiceDetails from './Pages/Common/ServiceDetails';
 import Blog from './Pages/Common/Blog';
 import Login from './Pages/Login/Login';
 import SignUp from './Pages/SignUp/SignUp';
+import MyRevies from './Pages/MyReviews/MyRevies';
 
 function App() {
 
@@ -41,6 +42,10 @@ function App() {
         {
           path : '/signup',
           element : <SignUp></SignUp>
+        },
+        {
+          path : 'myreviews',
+          element : <MyRevies></MyRevies>
         }
       ]
     }
