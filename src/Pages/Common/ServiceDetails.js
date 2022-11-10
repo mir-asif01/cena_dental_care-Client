@@ -95,23 +95,6 @@ const ServiceDetails = () => {
             </div>
             {/* reviews */}
             <div className='md:flex-grow p-2 md:p-4'>
-                {/* <div>
-                    <h1 className='text-xl font-semibold underline mb-2'>Reviews</h1>
-                    <div>
-                        {
-                            reviews.map(review => <div key={review._id}>
-                                <div className='border border-gray rounded-md my-2 p-3'>
-                                    <div className='flex'>
-                                        <img src={review.photo
-                                        } className='w-6 h-6 rounded-full mx-2' alt="" />
-                                        <h1>{review.userName}</h1>
-                                    </div>
-                                    <p><span className='font-bold italic'>Review</span> : {review.reviewText}</p>
-                                </div>
-                            </div>)
-                        }
-                    </div>
-                </div> */}
                     <h1 className='text-xl font-semibold underline mb-2'>Reviews</h1>
                 {
                     reviews.length > 0 ? <div>
@@ -141,12 +124,6 @@ const ServiceDetails = () => {
                             <form onSubmit={handleAddReview}>
                                 <label htmlFor="review text"></label>
                                 <textarea name="reviewText" id="" cols="30" rows="5" className='border border-gray-300 outline-none p-2 rounded-md' placeholder='Review Text'></textarea>
-                                <p className='my-1'>
-                                    <label htmlFor="name">Your Name</label><input type="text" className='border border-gray-300 mx-2 p-1 rounded-md' readOnly name='name' defaultValue={user?.displayName} />
-                                </p>
-                                <p className='my-1'>
-                                    <label htmlFor="photoURL">Your Photo</label><input type="text" className='border border-gray-300 mx-2 p-1 rounded-md' readOnly name='photoURL' defaultValue={user?.photoURL} />
-                                </p>
                                 <button className='py-2 px-5 bg-cyan-600 text-white rounded-md mt-2' type='submit'>Add Review</button>
                             </form>
                         </> :
