@@ -2,10 +2,12 @@ import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../Context/ContextProvider';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Link } from 'react-router-dom';
+import Spinner from '../Shared/Spinner';
 
 const MyRevies = () => {
 
-    const { user } = useContext(AuthContext)
+    const { user ,loading } = useContext(AuthContext)
     const [myreviews, setMyreviews] = useState([])
     useEffect(() => {
         fetch(`http://localhost:5000/reviews?email=${user?.email}`)
@@ -31,9 +33,17 @@ const MyRevies = () => {
     }
 
     const handleEditReview=(id)=>{
-
+        fetch(`http://localhost:5000/reviews/${id}`,{
+            method : "PUT"
+        }).then(res=>res.json)
+        .then(()=>{
+            toast.success('Review Updated')
+        })
     }
 
+    if(loading){
+        return <Spinner></Spinner>
+    }
     return (
         <div className='w-full p-5 md:w-3/4 mx-auto h-screen'>
             <ToastContainer
@@ -48,6 +58,7 @@ const MyRevies = () => {
                 pauseOnHover
                 theme="light"
             />
+            <h1 className='text-2xl font-semibold mb-4'>Reviews Added By You...</h1>
             {
                 myreviews.length > 0 ? <>
                     <div className='grid grid-cols-1 md:grid-cols-2 gap-10'>
@@ -62,6 +73,7 @@ const MyRevies = () => {
                                     <p><span className='font-bold italic'>Review</span> : {review.reviewText}</p>
                                     <div className='flex flex-start items-center mt-5'>
                                         <button onClick={()=>handleDeleteReview(review._id)} className='bg-rose-600 py-2 px-4 text-white rounded-md mx-3'>Delete</button>
+                                        {/* <Link to={`editReview`} className='bg-blue-600 py-2 px-4 text-white rounded-md mx-3'>Edit</Link> */}
                                         <button onClick={()=>handleEditReview(review._id)} className='bg-blue-600 py-2 px-4 text-white rounded-md mx-3'>Edit</button>
                                     </div>
                                 </div>

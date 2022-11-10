@@ -8,6 +8,7 @@ import Blog from './Pages/Common/Blog';
 import Login from './Pages/Login/Login';
 import SignUp from './Pages/SignUp/SignUp';
 import MyRevies from './Pages/MyReviews/MyRevies';
+import AddService from './Pages/AddService/AddService';
 
 function App() {
 
@@ -46,6 +47,10 @@ function App() {
         {
           path : 'myreviews',
           element : <MyRevies></MyRevies>
+        },
+        {
+          path : 'addservice',
+          element : <AddService></AddService>
         }
       ]
     }
