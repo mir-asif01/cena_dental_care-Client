@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/ContextProvider';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -7,10 +7,14 @@ import 'react-toastify/dist/ReactToastify.css';
 const Header = () => {
 
     const { userSignOut, user } = useContext(AuthContext);
+    const navigate = useNavigate()
 
     const handleLogOut = () => {
         userSignOut()
-            .then(() => toast.success('log out successfull'))
+            .then(() => {
+                navigate('/')
+                toast.success('log out successfull');
+            })
             .catch(error => console.log(error))
     }
 

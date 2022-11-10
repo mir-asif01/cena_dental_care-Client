@@ -1,17 +1,84 @@
-import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react';
+import { Link, useLoaderData } from 'react-router-dom';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import 'react-photo-view/dist/react-photo-view.css';
+import { AuthContext } from '../../Context/ContextProvider';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ServiceDetails = () => {
-
     document.title = "Service details"
 
+    const { user } = useContext(AuthContext)
+    const [reviews, setReviews] = useState([])
+
     const service = useLoaderData()
-    const { _id, name, img, desc, price } = service
+    const { _id, name, img, desc, price, serviceId } = service
+
+    const handleAddReview = (e) => {
+        e.preventDefault()
+        const form = e.target
+        
+        const ReviewAddedOn = new Date().getTime()
+        const reviewText = form.reviewText.value;
+        const userName = user?.displayName
+        const userEmail = user?.email
+        const photo = user?.photoURL
+
+        const review = {
+            reviewText: reviewText,
+            userName: userName,
+            photo: photo,
+            userEmail: userEmail,
+            serviceId: serviceId,
+            ReviewAddedOn : ReviewAddedOn
+        }
+
+        const newReviews = [...reviews, review]
+        setReviews(newReviews)
+
+        fetch('http://localhost:5000/review', {
+            method: "POST",
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(review)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.acknowledged) {
+                    toast.success('Review Added..')
+                }
+            })
+
+        // console.log(reviewText, userName, photo,serviceId,userEmail)
+        // console.log(review)
+        form.reset()
+    }
+
+    useEffect(() => {
+        fetch(`http://localhost:5000/reviews?serviceId=${serviceId}`)
+            .then(res => res.json())
+            .then(data => {
+                setReviews(data)
+            })
+    }, [serviceId])
+
     return (
         <div className='my-4 flex flex-col md:flex-row'>
             {/* service details  */}
+            <ToastContainer
+                position="top-center"
+                autoClose={2500}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+            />
             <div className='md:flex-0 p-2 md:p-4 w-full lg:w-72 border-r-2'>
                 <h1 className='text-xl font-semibold underline mb-2'>Service Details</h1>
                 <PhotoProvider className='h-full w-full'>
@@ -27,7 +94,44 @@ const ServiceDetails = () => {
             </div>
             {/* reviews */}
             <div className='md:flex-grow p-2 md:p-4'>
-                <h1 className='text-xl font-semibold underline mb-2'>Reviews</h1>
+                <div>
+                    <h1 className='text-xl font-semibold underline mb-2'>Reviews</h1>
+                    <div>
+                        {
+                            reviews.map(review => <div key={review._id}>
+                                <div className='border border-gray rounded-md my-2 p-3'>
+                                    <div className='flex'>
+                                        <img src={review.photo
+                                        } className='w-6 h-6 rounded-full mx-2' alt="" />
+                                        <h1>{review.userName}</h1>
+                                    </div>
+                                    <p><span className='font-bold italic'>Review</span> : {review.reviewText}</p>
+                                </div>
+                            </div>)
+                        }
+                    </div>
+                </div>
+                <div className='mt-7'>
+                    {
+                        user ? <>
+                            <h1 className='text-xl font-semibold underline mb-2'>Add Your Own Review</h1>
+                            <form onSubmit={handleAddReview}>
+                                <label htmlFor="review text"></label>
+                                <textarea name="reviewText" id="" cols="30" rows="5" className='border border-gray-300 outline-none p-2 rounded-md' placeholder='Review Text'></textarea>
+                                <p className='my-1'>
+                                    <label htmlFor="name">Your Name</label><input type="text" className='border border-gray-300 mx-2 p-1 rounded-md' readOnly name='name' defaultValue={user?.displayName} />
+                                </p>
+                                <p className='my-1'>
+                                    <label htmlFor="photoURL">Your Photo</label><input type="text" className='border border-gray-300 mx-2 p-1 rounded-md' readOnly name='photoURL' defaultValue={user?.photoURL} />
+                                </p>
+                                <button className='py-2 px-5 bg-cyan-600 text-white rounded-md mt-2' type='submit'>Add Review</button>
+                            </form>
+                        </> :
+                        <>
+                            <h1 className='text-center text-2xl font-semibold'>Please <Link className='text-blue-600 underline' to='/login'>Login</Link>To Add Review.</h1>
+                        </>
+                    }
+                </div>
             </div>
         </div>
     );

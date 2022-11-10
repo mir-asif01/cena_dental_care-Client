@@ -22,11 +22,12 @@ const Login = () => {
             .then(result => {
                 const user = result.user
                 setUser(user)
+                navigate('/')
                 toast.success('Login Succesfull')
                 form.reset()
-                navigate('/')
             })
             .catch(error => {
+                navigate('/')
                 toast.error(error.message)
             })
     }
@@ -35,9 +36,9 @@ const Login = () => {
         googleSignIn()
             .then(result => {
                 const user = result.user;
+                navigate('/')
                 toast.success('Google Sign In Successfull')
                 setUser(user)
-                navigate('/')
             })
             .catch(error => toast.error(`${error.message}`))
     }
