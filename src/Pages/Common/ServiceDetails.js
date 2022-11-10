@@ -31,6 +31,7 @@ const ServiceDetails = () => {
             photo: photo,
             userEmail: userEmail,
             serviceId: serviceId,
+            serviceName : name,
             ReviewAddedOn : ReviewAddedOn
         }
 
@@ -94,7 +95,7 @@ const ServiceDetails = () => {
             </div>
             {/* reviews */}
             <div className='md:flex-grow p-2 md:p-4'>
-                <div>
+                {/* <div>
                     <h1 className='text-xl font-semibold underline mb-2'>Reviews</h1>
                     <div>
                         {
@@ -110,7 +111,29 @@ const ServiceDetails = () => {
                             </div>)
                         }
                     </div>
+                </div> */}
+                    <h1 className='text-xl font-semibold underline mb-2'>Reviews</h1>
+                {
+                    reviews.length > 0 ? <div>
+                    <div>
+                        {
+                            reviews.map(review => <div key={review._id}>
+                                <div className='border border-gray rounded-md my-2 p-3'>
+                                    <div className='flex'>
+                                        <img src={review.photo
+                                        } className='w-6 h-6 rounded-full mx-2' alt="" />
+                                        <h1>{review.userName}</h1>
+                                    </div>
+                                    <p><span className='font-bold italic'>Review</span> : {review.reviewText}</p>
+                                </div>
+                            </div>)
+                        }
+                    </div>
+                </div> : <div>
+                    <h1 className='text-rose-500 italic'>No reviews added yet</h1>
                 </div>
+                }
+
                 <div className='mt-7'>
                     {
                         user ? <>

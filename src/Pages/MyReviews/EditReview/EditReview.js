@@ -5,8 +5,9 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const EditReview = () => {
 
+    document.title = "Edit review"
+
     const review = useLoaderData()
-    console.log(review)
     const { reviewText } = review
 
     const handleEditReview=(e)=>{

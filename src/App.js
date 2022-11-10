@@ -10,6 +10,7 @@ import SignUp from './Pages/SignUp/SignUp';
 import MyRevies from './Pages/MyReviews/MyRevies';
 import AddService from './Pages/AddService/AddService';
 import EditReview from './Pages/MyReviews/EditReview/EditReview';
+import PrivateRoute from './PrivateRoute/PrivateRoute';
 
 function App() {
 
@@ -47,7 +48,7 @@ function App() {
         },
         {
           path : 'myreviews',
-          element : <MyRevies></MyRevies>
+          element : <PrivateRoute><MyRevies></MyRevies></PrivateRoute>
         },
         {
           path : 'reviews/:id',
@@ -56,7 +57,7 @@ function App() {
         },
         {
           path : 'addservice',
-          element : <AddService></AddService>
+          element : <PrivateRoute><AddService></AddService></PrivateRoute>
         }
       ]
     }

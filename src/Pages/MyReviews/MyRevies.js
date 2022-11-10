@@ -7,6 +7,8 @@ import Spinner from '../Shared/Spinner';
 
 const MyRevies = () => {
 
+    document.title = "My Reviews"
+
     const { user ,loading } = useContext(AuthContext)
     const [myreviews, setMyreviews] = useState([])
     useEffect(() => {
@@ -18,8 +20,6 @@ const MyRevies = () => {
     }, [user?.email])
 
     const handleDeleteReview=(id)=>{
-        console.log('id from btn handler',id)
-
         fetch(`http://localhost:5000/reviews/${id}`,{
             method : "DELETE"
         })
@@ -63,6 +63,8 @@ const MyRevies = () => {
                                         } className='w-6 h-6 rounded-full mx-2' alt="" />
                                         <h1>{review.userName}</h1>
                                     </div>
+                                    <h1 className='font-semibold text-rose-600 bg-gray-200 p-1 rounded-md my-2'>Service Name : {review?.serviceName}</h1>
+                                    <h1 className='font-semibold text-rose-600 bg-gray-200 p-1 rounded-md my-2'>Service Id : {review?.serviceId}</h1>
                                     <p><span className='font-bold italic'>Review</span> : {review.reviewText}</p>
                                     <div className='flex flex-start items-center mt-5'>
                                         <button onClick={()=>handleDeleteReview(review._id)} className='bg-rose-600 py-2 px-4 text-white rounded-md mx-3'>Delete</button>
