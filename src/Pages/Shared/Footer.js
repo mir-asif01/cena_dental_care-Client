@@ -2,20 +2,18 @@ import React from 'react';
 
 const Footer = () => {
     return (
-        <div>
-            <footer className="footer p-10 bg-base-300 text-base-content">
+        <div className='bg-cyan-100 py-2'>
+            <footer className="footer p-10 text-base-content">
                 <div>
-                    <span className="footer-title">Services</span>
-                    <button className="link link-hover">Branding</button>
-                    <button className="link link-hover">Design</button>
-                    <button className="link link-hover">Marketing</button>
-                    <button className="link link-hover">Advertisement</button>
+                    <span className="footer-title">Popular Services</span>
+                    <button className="link link-hover">X-Rays</button>
+                    <button className="link link-hover">Whitening</button>
+                    <button className="link link-hover">Root Canals</button>
                 </div> 
                 <div>
                     <span className="footer-title">About Dr. John Cena</span>
-                    <button className="link link-hover">About us</button>
                     <button className="link link-hover">Education</button>
-                    <button className="link link-hover">Jobs</button>
+                    <button className="link link-hover">Job</button>
                     <button className="link link-hover">Carrer</button>
                 </div>
                 <div>
@@ -27,6 +25,7 @@ const Footer = () => {
                     </div>
                 </div>
             </footer>
+            <p className='text-center font-bold italic'>All Copyrights Reserved By <span className='text-rose-500'>Dr. Cena</span> @2022</p>
         </div>
     );
 };

@@ -12,7 +12,7 @@ const MyRevies = () => {
     const { user ,loading } = useContext(AuthContext)
     const [myreviews, setMyreviews] = useState([])
     useEffect(() => {
-        fetch(`http://localhost:5000/reviews?email=${user?.email}`)
+        fetch(`https://cena-dental-care-server.vercel.app/reviews?email=${user?.email}`)
             .then(res => res.json())
             .then(data => {
                 setMyreviews(data)
@@ -20,7 +20,7 @@ const MyRevies = () => {
     }, [user?.email])
 
     const handleDeleteReview=(id)=>{
-        fetch(`http://localhost:5000/reviews/${id}`,{
+        fetch(`https://cena-dental-care-server.vercel.app/reviews/${id}`,{
             method : "DELETE"
         })
         .then(res=>res.json())

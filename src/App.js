@@ -21,12 +21,12 @@ function App() {
       children : [
         {
           path : '/',
-          loader : ()=> fetch('http://localhost:5000/home'),
+          loader : ()=> fetch('https://cena-dental-care-server.vercel.app/home'),
           element : <Home></Home>
         },
         {
           path : '/services',
-          loader : ()=> fetch('http://localhost:5000/services'),
+          loader : ()=> fetch('https://cena-dental-care-server.vercel.app/services'),
           element : <Services></Services>
         },
         {
@@ -35,7 +35,7 @@ function App() {
         },
         {
           path : 'services/:id',
-          loader : ({params})=> fetch(`http://localhost:5000/services/${params.id}`),
+          loader : ({params})=> fetch(`https://cena-dental-care-server.vercel.app/services/${params.id}`),
           element : <ServiceDetails></ServiceDetails>
         },
         {
@@ -52,7 +52,7 @@ function App() {
         },
         {
           path : 'reviews/:id',
-          loader : ({params})=> fetch(`http://localhost:5000/reviews/${params.id}`),
+          loader : ({params})=> fetch(`https://cena-dental-care-server.vercel.app/reviews/${params.id}`),
           element : <EditReview></EditReview>
         },
         {

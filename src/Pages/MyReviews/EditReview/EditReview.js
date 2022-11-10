@@ -19,7 +19,7 @@ const EditReview = () => {
             editedText : editedText
         };
 
-        fetch(`http://localhost:5000/reviews/${review._id}`,{
+        fetch(`https://cena-dental-care-server.vercel.app/reviews/${review._id}`,{
             method : "PUT",
             headers : {
                 "content-Type": "application/json"

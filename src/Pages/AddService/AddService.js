@@ -26,7 +26,7 @@ const AddService = () => {
             price : price,
             desc : description
         }
-        fetch('http://localhost:5000/services',{
+        fetch('https://cena-dental-care-server.vercel.app/services',{
             method : "POST",
             headers : {
                 'content-type' : 'application/json'
