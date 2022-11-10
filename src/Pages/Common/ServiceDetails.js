@@ -18,7 +18,7 @@ const ServiceDetails = () => {
     const handleAddReview = (e) => {
         e.preventDefault()
         const form = e.target
-        
+
         const ReviewAddedOn = new Date().getTime()
         const reviewText = form.reviewText.value;
         const userName = user?.displayName
@@ -31,8 +31,8 @@ const ServiceDetails = () => {
             photo: photo,
             userEmail: userEmail,
             serviceId: serviceId,
-            serviceName : name,
-            ReviewAddedOn : ReviewAddedOn
+            serviceName: name,
+            ReviewAddedOn: ReviewAddedOn
         }
 
         const newReviews = [...reviews, review]
@@ -95,26 +95,26 @@ const ServiceDetails = () => {
             </div>
             {/* reviews */}
             <div className='md:flex-grow p-2 md:p-4'>
-                    <h1 className='text-xl font-semibold underline mb-2'>Reviews</h1>
+                <h1 className='text-xl font-semibold underline mb-2'>Reviews</h1>
                 {
                     reviews.length > 0 ? <div>
-                    <div>
-                        {
-                            reviews.map(review => <div key={review._id}>
-                                <div className='border border-gray rounded-md my-2 p-3'>
-                                    <div className='flex'>
-                                        <img src={review.photo
-                                        } className='w-6 h-6 rounded-full mx-2' alt="" />
-                                        <h1>{review.userName}</h1>
+                        <div>
+                            {
+                                reviews.map(review => <div key={review._id}>
+                                    <div className='border border-gray rounded-md my-2 p-3'>
+                                        <div className='flex'>
+                                            <img src={review.photo
+                                            } className='w-6 h-6 rounded-full mx-2' alt="" />
+                                            <h1>{review.userName}</h1>
+                                        </div>
+                                        <p><span className='font-bold italic'>Review</span> : {review.reviewText}</p>
                                     </div>
-                                    <p><span className='font-bold italic'>Review</span> : {review.reviewText}</p>
-                                </div>
-                            </div>)
-                        }
+                                </div>)
+                            }
+                        </div>
+                    </div> : <div>
+                        <h1 className='text-rose-500 italic'>No reviews added yet</h1>
                     </div>
-                </div> : <div>
-                    <h1 className='text-rose-500 italic'>No reviews added yet</h1>
-                </div>
                 }
 
                 <div className='mt-7'>
@@ -122,14 +122,15 @@ const ServiceDetails = () => {
                         user ? <>
                             <h1 className='text-xl font-semibold underline mb-2'>Add Your Own Review</h1>
                             <form onSubmit={handleAddReview}>
-                                <label htmlFor="review text"></label>
-                                <textarea name="reviewText" id="" cols="30" rows="5" className='border border-gray-300 outline-none p-2 rounded-md' placeholder='Review Text'></textarea>
-                                <button className='py-2 px-5 bg-cyan-600 text-white rounded-md mt-2' type='submit'>Add Review</button>
+                                <div className='flex flex-col justify-center items-start'>
+                                    <textarea name="reviewText" id="" cols="30" rows="5" className='border border-gray-300 outline-none p-2 rounded-md' placeholder='Review Text'></textarea>
+                                    <button className='py-2 px-5 bg-cyan-600 text-white rounded-md mt-2' type='submit'>Add Review</button>
+                                </div>
                             </form>
                         </> :
-                        <>
-                            <h1 className='text-center text-2xl font-semibold'>Please <Link className='text-blue-600 underline' to='/login'>Login</Link>To Add Review.</h1>
-                        </>
+                            <>
+                                <h1 className='text-center text-2xl font-semibold'>Please <Link className='text-blue-600 underline' to='/login'>Login</Link>To Add Review.</h1>
+                            </>
                     }
                 </div>
             </div>
