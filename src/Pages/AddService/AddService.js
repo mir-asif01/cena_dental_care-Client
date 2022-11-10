@@ -53,7 +53,7 @@ const AddService = () => {
                     pauseOnHover
                     theme="light"
                 />
-            <h1 className='text-2xl font-semibold'>Add Service</h1>
+            <h1 className='text-2xl text-center font-semibold underline'>Add a Service</h1>
             <form onSubmit={handleAddService} className="card-body">
                 <div className="form-control">
                     <label className="label">
@@ -81,13 +81,13 @@ const AddService = () => {
                             Service Id
                         </span>
                     </label>
-                    <input type="number" placeholder="service id" name='serviceId' className="input input-bordered" />
+                    <input type="number" placeholder="please provide a unique service id" name='serviceId' className="input input-bordered" />
                 </div>
                 <div className="form-control">
                     <label className="label">
                         <span className="label-text">Image URL</span>
                     </label>
-                    <input type="text" placeholder="service image URL" name='imgURL' className="input input-bordered" />
+                    <input type="text" placeholder="please provide a image online URL" name='imgURL' className="input input-bordered" />
                 </div>
                 <div className="form-control mt-6">
                     <button className="btn btn-primary">Add Service</button>

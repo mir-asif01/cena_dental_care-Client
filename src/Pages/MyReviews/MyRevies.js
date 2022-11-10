@@ -32,20 +32,13 @@ const MyRevies = () => {
 
     }
 
-    const handleEditReview=(id)=>{
-        fetch(`http://localhost:5000/reviews/${id}`,{
-            method : "PUT"
-        }).then(res=>res.json)
-        .then(()=>{
-            toast.success('Review Updated')
-        })
-    }
+    
 
     if(loading){
         return <Spinner></Spinner>
     }
     return (
-        <div className='w-full p-5 md:w-3/4 mx-auto h-screen'>
+        <div className='w-full p-5 md:w-3/4 mx-auto'>
             <ToastContainer
                 position="top-center"
                 autoClose={2500}
@@ -73,8 +66,8 @@ const MyRevies = () => {
                                     <p><span className='font-bold italic'>Review</span> : {review.reviewText}</p>
                                     <div className='flex flex-start items-center mt-5'>
                                         <button onClick={()=>handleDeleteReview(review._id)} className='bg-rose-600 py-2 px-4 text-white rounded-md mx-3'>Delete</button>
-                                        {/* <Link to={`editReview`} className='bg-blue-600 py-2 px-4 text-white rounded-md mx-3'>Edit</Link> */}
-                                        <button onClick={()=>handleEditReview(review._id)} className='bg-blue-600 py-2 px-4 text-white rounded-md mx-3'>Edit</button>
+                                        <Link to={`/reviews/${review._id}`} className='bg-blue-600 py-2 px-4 text-white rounded-md mx-3'>Edit</Link>
+                                        {/* <button onClick={()=>handleEditReview(review._id)} className='bg-blue-600 py-2 px-4 text-white rounded-md mx-3'>Edit</button> */}
                                     </div>
                                 </div>
                             </div>)

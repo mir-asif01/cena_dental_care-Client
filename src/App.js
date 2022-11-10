@@ -9,6 +9,7 @@ import Login from './Pages/Login/Login';
 import SignUp from './Pages/SignUp/SignUp';
 import MyRevies from './Pages/MyReviews/MyRevies';
 import AddService from './Pages/AddService/AddService';
+import EditReview from './Pages/MyReviews/EditReview/EditReview';
 
 function App() {
 
@@ -47,6 +48,11 @@ function App() {
         {
           path : 'myreviews',
           element : <MyRevies></MyRevies>
+        },
+        {
+          path : 'reviews/:id',
+          loader : ({params})=> fetch(`http://localhost:5000/reviews/${params.id}`),
+          element : <EditReview></EditReview>
         },
         {
           path : 'addservice',
