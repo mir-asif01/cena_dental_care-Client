@@ -27,8 +27,8 @@ const EditReview = () => {
             body : JSON.stringify(updatedText)
         }).then(res=>{})
         .then(()=>{
-            toast.success('Review Updated')
         })
+        toast.success('Review Updated')
     }
 
     return (
